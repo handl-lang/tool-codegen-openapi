@@ -1,0 +1,67 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Fixture API", "version": "1.2.3" },
+  "servers": [{ "url": "https://api.example.com" }],
+  "paths": {
+    "/users": {
+      "get": {
+        "operationId": "listUsers",
+        "summary": "List users",
+        "description": "Returns all users.",
+        "tags": ["users"],
+        "parameters": [
+          { "name": "limit", "in": "query", "required": false,
+            "schema": { "type": "integer" } },
+          { "name": "tenant", "in": "query", "required": false,
+            "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createUser",
+        "summary": "Create user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "type": "object" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "created" }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "operationId": "getUser",
+        "summary": "Show user",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true,
+            "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          },
+          "404": { "description": "missing" }
+        }
+      }
+    }
+  }
+}

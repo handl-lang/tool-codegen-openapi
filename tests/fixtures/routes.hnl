@@ -1,0 +1,41 @@
+--- tests/fixtures/routes.hnl — route-map fixture for the `spec`
+--- direction: a nested `{ name: leaf | subtree }` map exercising
+--- method maps, `:param` segments, doc passthrough, a `*splat`, and
+--- an explicit-path leaf with a `?k=v` constraint.
+---
+--- Deliberately `export`-free except `routes`: the probe imports `*`
+--- and calls `oa.openapi(routes, …)`.
+
+h := (_req) ~> null
+
+export routes := {
+  health: {
+    get: h,
+    doc: { summary: "Health check", operationId: "healthCheck" }
+  },
+  users: {
+    ":id": {
+      get: h,
+      doc: {
+        summary: "Show user",
+        description: "Returns one user by id.",
+        tags: ["users"],
+        operationId: "getUser",
+        params: [
+          { name: "verbose", in: "query",
+            schema: { type: "boolean" } }
+        ],
+        responses: { "200": { description: "ok" } }
+      }
+    }
+  },
+  files: {
+    "*rest": { get: h, doc: { summary: "Download file" } }
+  },
+  search: {
+    handler: h,
+    path: "/search?q=test",
+    method: "get",
+    doc: { summary: "Search", deprecated: true }
+  }
+}
