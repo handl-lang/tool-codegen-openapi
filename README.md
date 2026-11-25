@@ -44,8 +44,8 @@ hnl: /path/to/hnl              # default: $HANDL_HNL / ~/.local/bin/hnl / …
 cargo xtask gate        # fmt --check → clippy -D warnings → test → doc
 ```
 
-`cargo xtask` wraps the repo's `xtask/` crate; `ci.sh` is the gate
-entry. The eval-dependent tests skip cleanly when `hnl run` (the
+`cargo xtask` wraps the repo's `xtask/` crate; `ci.sh` is a local gate
+entry; the bupha gate is `workflows/gate.yaml` (rust campaign). The eval-dependent tests skip cleanly when `hnl run` (the
 `ext-eval` cdylib) is unavailable; emitter and lifecycle tests always
 run.
 
