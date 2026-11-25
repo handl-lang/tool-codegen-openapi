@@ -2,6 +2,7 @@
 name = "handl-plugin-codegen-backend-openapi"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.85"
 description = "OpenAPI backend for the Handl codegen pipeline (P-008 / T-144): handl route maps -> OpenAPI 3.0.x specs, and OpenAPI specs -> handl client/server bindings."
 license = "MIT"
 repository = "https://github.com/handl-lang/tool-codegen-openapi"
